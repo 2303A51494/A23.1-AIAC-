@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Assisted E-commerce Billing System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6dd5ed, #2193b0);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 500px;
+            margin: 60px auto;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            border-radius: 12px;
+        }
+
+        h1 {
+            font-size: 22px;
+            color: #333;
+        }
+
+        .login-form {
+            margin-top: 20px;
+        }
+
+        .login-form input {
+            display: block;
+            width: 90%;
+            padding: 10px;
+            margin: 10px auto;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .login-form button,
+        .dashboard button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .login-form button:hover,
+        .dashboard button:hover {
+            background-color: #0056b3;
+        }
+
+        .dashboard {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>AI-Assisted E-commerce Billing System</h1>
+
+        <!-- Login -->
+        <div class="login-form">
+            <h2>Login</h2>
+            <input type="text" id="email" placeholder="Email">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="login()">Login</button>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="dashboard">
+            <h2>Dashboard</h2>
+            <button onclick="viewBilling()">View Billing</button>
+            <button onclick="viewRecommendations()">View Recommendations</button>
+            <button onclick="viewFraudDetection()">View Fraud Detection</button>
+        </div>
+    </div>
+
+    <script>
+    function login() {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        if (email === 'admin@gmail.com' && password === '1234') {
+            document.querySelector('.login-form').style.display = 'none';
+            document.querySelector('.dashboard').style.display = 'block';
+        } else {
+            alert('Invalid email or password');
+        }
+    }
+
+    function viewBilling() {
+        fetch('http://127.0.0.1:5000/api/billing')
+            .then(response => response.json())
+            .then(data => {
+                alert('Billing Information:\n' + JSON.stringify(data, null, 2));
+            })
+            .catch(error => console.error(error));
+    }
+
+    function viewRecommendations() {
+        fetch('http://127.0.0.1:5000/api/recommendations')
+            .then(response => response.json())
+            .then(data => {
+                alert('Recommendations:\n' + JSON.stringify(data, null, 2));
+            })
+            .catch(error => console.error(error));
+    }
+
+    function viewFraudDetection() {
+        fetch('http://127.0.0.1:5000/api/fraud-detection')
+            .then(response => response.json())
+            .then(data => {
+                alert('Fraud Detection:\n' + JSON.stringify(data, null, 2));
+            })
+            .catch(error => console.error(error));
+    }
+</script>
+</body>
+</html>
